@@ -2,139 +2,100 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Cálculo de Salario Quincenal</title>
+  <title>Salario Quincenal</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f4f8;
+      background: #f2f2f2;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      margin: 0;
-      padding: 30px 10px;
+      padding: 40px 10px;
     }
 
-    .container {
+    .caja {
       background: white;
-      padding: 30px 40px;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       width: 100%;
-      max-width: 480px;
+      max-width: 420px;
     }
 
     h1 {
+      font-size: 1.3rem;
+      color: #333;
       text-align: center;
-      color: #2c3e50;
-      font-size: 1.4rem;
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+    }
+
+    p.info {
+      font-size: 0.85rem;
+      background: #eef4fb;
+      border-left: 3px solid #2980b9;
+      padding: 8px 12px;
+      margin-bottom: 20px;
+      color: #333;
     }
 
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
-      color: #34495e;
       font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 4px;
+      color: #444;
     }
 
-    input[type="text"],
-    input[type="number"] {
+    input {
       width: 100%;
-      padding: 10px;
+      padding: 9px;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
+      border-radius: 5px;
+      font-size: 0.95rem;
       box-sizing: border-box;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    input[type="submit"] {
+    button {
       width: 100%;
-      padding: 12px;
+      padding: 11px;
       background: #2980b9;
       color: white;
-      font-size: 1rem;
       border: none;
-      border-radius: 6px;
+      border-radius: 5px;
+      font-size: 1rem;
       cursor: pointer;
     }
 
-    input[type="submit"]:hover {
-      background: #1a6a9a;
+    button:hover {
+      background: #1f6690;
     }
-
-    .tarifas {
-      background: #eaf4fb;
-      border-left: 4px solid #2980b9;
-      padding: 10px 14px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-      font-size: 0.85rem;
-      color: #2c3e50;
-    }
-
-    .resultado {
-      margin-top: 30px;
-      background: #f9f9f9;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-    }
-
-    .resultado h2 {
-      color: #2c3e50;
-      margin-top: 0;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 10px;
-    }
-
-    .fila {
-      display: flex;
-      justify-content: space-between;
-      padding: 6px 0;
-      font-size: 0.95rem;
-      border-bottom: 1px dashed #eee;
-    }
-
-    .fila:last-child { border-bottom: none; }
-
-    .fila .valor { font-weight: bold; color: #2c3e50; }
-    .fila.neto { margin-top: 10px; background: #27ae60; color: white; padding: 10px; border-radius: 6px; border: none; }
-    .fila.neto .valor { color: white; }
-    .descuento .valor { color: #c0392b; }
   </style>
 </head>
 <body>
-<div class="container">
-  <h1>💰 Cálculo de Salario Quincenal</h1>
+<div class="caja">
+  <h1>Calculo de Salario Quincenal</h1>
 
-  <div class="tarifas">
-    <strong>Tarifas por hora:</strong><br>
-    🌤 Diurna: <strong>675 Bs.</strong> &nbsp;|&nbsp;
-    🌆 Vespertina: <strong>700 Bs.</strong> &nbsp;|&nbsp;
-    🌙 Nocturna: <strong>956.23 Bs.</strong>
-  </div>
+  <p class="info">
+    Tarifas: Diurna 675 Bs. | Vespertina 700 Bs. | Nocturna 956.23 Bs.
+  </p>
 
   <form method="POST" action="calcular.php">
-    <label>Nombre completo:</label>
-    <input type="text" name="nombre" placeholder="Ej: Juan Pérez" required>
+    <label>Nombre:</label>
+    <input type="text" name="nombre" required>
 
-    <label>Cédula:</label>
-    <input type="text" name="cedula" placeholder="Ej: V-12345678" required>
+    <label>Cedula:</label>
+    <input type="text" name="cedula" required>
 
-    <label>Horas trabajadas — Turno Diurno:</label>
-    <input type="number" name="horas_diurna" min="0" step="0.5" placeholder="0" required>
+    <label>Horas turno diurno:</label>
+    <input type="number" name="horas_diurna" min="0" step="0.5" value="0" required>
 
-    <label>Horas trabajadas — Turno Vespertino:</label>
-    <input type="number" name="horas_vespertina" min="0" step="0.5" placeholder="0" required>
+    <label>Horas turno vespertino:</label>
+    <input type="number" name="horas_vespertina" min="0" step="0.5" value="0" required>
 
-    <label>Horas trabajadas — Turno Nocturno:</label>
-    <input type="number" name="horas_nocturna" min="0" step="0.5" placeholder="0" required>
+    <label>Horas turno nocturno:</label>
+    <input type="number" name="horas_nocturna" min="0" step="0.5" value="0" required>
 
-    <input type="submit" value="Calcular Sueldo">
+    <button type="submit">Calcular</button>
   </form>
 </div>
 </body>
